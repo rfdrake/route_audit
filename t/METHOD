@@ -1,0 +1,3 @@
+
+Currently what I do is run the script against a single device of the type I'm testing, then hand compare the routes.
+It would be nice to have automated end to end tests, but I need to sanitize the configs first.

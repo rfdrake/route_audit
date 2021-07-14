@@ -1,0 +1,33 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use Getopt::Long;
+use RouteAudit::DeviceHandler;
+use File::Basename qw (basename);
+use JSON;
+use v5.24;
+
+
+my $opts = {};
+GetOptions(\%$opts, "path=s",);
+$opts->{path} ||= "/tftpboot/*-confg";
+
+my @files = glob $opts->{path};
+my @routes;
+foreach my $router (@files) {
+    # skip empty or non-existent files
+    next if !(-f "$router") || (-z "$router");
+
+    my $rtr = basename($router);
+    $rtr =~ s/-confg//;
+    open my $f, '<', $router or die "Can't open $_";
+    my $line1 = <$f>;
+    if ($line1 =~ /^[!#]RANCID-CONTENT-TYPE: (.*?)$/) {
+        my $m = RouteAudit::DeviceHandler::load_model($1);
+        push(@routes, RouteAudit::DeviceHandler::run("$m"."::parse_config", $f, $rtr));
+    }
+    close($f);
+}
+
+print JSON->new->convert_blessed(1)->encode(\@routes);

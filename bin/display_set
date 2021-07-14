@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+
+# takes a juniper braces config file and turns it into a "set" style config.
+
+use strict;
+use warnings;
+use RouteAudit::Model::junos;
+use v5.24;
+
+
+for(@ARGV) {
+    open my $f,'<', $_ or die "Can't open $_";
+    my $x = RouteAudit::Model::junos::flatten($f);
+    for(@$x) {
+        print "set $_\n";
+    }
+}
