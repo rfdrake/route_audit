@@ -46,7 +46,7 @@ sub parse_config {
         elsif (/^vrf context (\S+)/) {
             $context = $1;
         }
-        elsif (/^interface ([A-Za-z][\w\.\/\-]+(?: \d+)?)/) {
+        elsif (/^interface ([A-Za-z][\w\.\/\-]+(?: [\d\/]+)?)/) {
             $ips   = [];
             $cdata = {'shutdown' => 0, 'desc' => '', 'vrf' => '', 'vlan' => '', 'router' => $rtr, 'interface' => $1};
         }
