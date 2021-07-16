@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use Getopt::Long;
-use RouteAudit::DeviceHandler;
+use RouteAudit::DeviceHandler qw ( parse_config );
 use File::Basename qw (basename);
 use v5.24;
 
@@ -23,8 +23,7 @@ foreach my $router (@files) {
     open my $f, '<', $router or die "Can't open $_";
     my $line1 = <$f>;
     if ($line1 =~ /^[!#]RANCID-CONTENT-TYPE: (.*?)$/) {
-        my $m = RouteAudit::DeviceHandler::load_model($1);
-        push(@routes, RouteAudit::DeviceHandler::run("$m"."::parse_config", $f, $rtr));
+        push(@routes, parse_config($1, $f, $rtr));
     }
     close($f);
 }

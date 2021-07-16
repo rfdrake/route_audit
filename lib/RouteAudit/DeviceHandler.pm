@@ -5,6 +5,11 @@ use warnings;
 use Module::Runtime qw ( use_module );
 use Carp;
 
+require Exporter;
+our @ISA = qw(Exporter);
+our @EXPORT = ();
+our @EXPORT_OK = qw ( parse_config );
+
 my $aliases = {
     'edgerouter' => 'null',
     'edgemax' => 'null',
@@ -51,6 +56,12 @@ sub load_model {
 sub run {
     my $command = shift;
     &{\&{$command}}(@_);
+}
+
+sub parse_config {
+    my ($model, $f, $devicename) = @_;
+    my $m = load_model($model);
+    return run($m."::parse_config", $f, $devicename);
 }
 
 1;
