@@ -1,4 +1,4 @@
-package RouteAudit::Model::casa;
+package RouteAudit::Model::Casa;
 
 use strict;
 use warnings;

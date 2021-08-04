@@ -1,4 +1,4 @@
-package RouteAudit::Model::junos;
+package RouteAudit::Model::Junos;
 
 use strict;
 use warnings;

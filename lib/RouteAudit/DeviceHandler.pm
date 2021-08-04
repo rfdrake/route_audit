@@ -11,13 +11,13 @@ our @EXPORT = ();
 our @EXPORT_OK = qw ( parse_config );
 
 my $aliases = {
-    'edgerouter' => 'null',
-    'edgemax' => 'null',
-    'airos' => 'null',
-    'zynos' => 'null',
-    'foundry' => 'cisco',
-    'asa' => 'cisco',
-    'nxos' => 'cisco',
+    'Edgerouter' => 'Null',
+    'Edgemax' => 'Null',
+    'Airos' => 'Null',
+    'Zynos' => 'Null',
+    'Foundry' => 'Cisco',
+    'Asa' => 'Cisco',
+    'Nxos' => 'Cisco',
 };
 
 =head1 NAME
@@ -42,6 +42,7 @@ Loads the module for the specified device model.
 sub load_model {
     my $model = shift;
     croak if (!defined($model));
+    $model = ucfirst($model);
     $model = $aliases->{$model} if (defined($aliases->{$model}));
 
     my $m = 'RouteAudit::Model::' . $model;

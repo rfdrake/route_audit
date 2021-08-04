@@ -1,4 +1,4 @@
-package RouteAudit::Model::routeros;
+package RouteAudit::Model::Routeros;
 
 use strict;
 use warnings;

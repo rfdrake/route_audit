@@ -1,4 +1,4 @@
-package RouteAudit::Model::vyos;
+package RouteAudit::Model::Vyos;
 
 use strict;
 use warnings;

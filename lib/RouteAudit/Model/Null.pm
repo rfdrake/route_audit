@@ -1,4 +1,4 @@
-package RouteAudit::Model::null;
+package RouteAudit::Model::Null;
 
 use strict;
 use warnings;

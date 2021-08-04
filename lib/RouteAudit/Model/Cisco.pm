@@ -1,4 +1,4 @@
-package RouteAudit::Model::cisco;
+package RouteAudit::Model::Cisco;
 
 use strict;
 use warnings;
