@@ -82,6 +82,7 @@ sub parse_config {
                     $r->description($cdata->{desc}) if ($cdata->{desc});
                     $r->vrf($cdata->{vrf}) if ($cdata->{vrf});
                     $r->interface($cdata->{interface}) if ($cdata->{interface});
+                    $r->shutdown($cdata->{shutdown}) if ($cdata->{shutdown});
                     push(@return, $r);
                 }
                 $cdata = undef;
