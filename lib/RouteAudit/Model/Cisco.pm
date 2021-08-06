@@ -57,6 +57,9 @@ sub parse_config {
             elsif (/^\s+shutdown/) {
                 $cdata->{shutdown} = 1;
             }
+            elsif (/^\s+disable/) {
+                $cdata->{shutdown} = 1;
+            }
             elsif (/^\s+nameif (.*?)$/) {
                 $cdata->{desc} = $1;
             }
