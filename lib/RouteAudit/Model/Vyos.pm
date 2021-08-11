@@ -4,11 +4,8 @@ use strict;
 use warnings;
 
 use RouteAudit::RouteObject;
-use Regexp::Common qw /net/;
+use RouteAudit::NetRE qw ( $IP_regex $v4 );
 use v5.24;
-
-my $IP_regex = qr/$RE{net}{IPv4}|$RE{net}{IPv6}/;
-my $v4 = $RE{net}{IPv4};
 
 # problem: rancid's vyos commands dump both the commands output and the "config" output.  Meaning we need to ignore one or the other.
 

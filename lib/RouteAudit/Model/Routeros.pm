@@ -4,11 +4,8 @@ use strict;
 use warnings;
 
 use RouteAudit::RouteObject;
-use Regexp::Common qw /net/;
+use RouteAudit::NetRE qw ( $IP_regex $v4 );
 use v5.24;
-
-my $IP_regex = qr/$RE{net}{IPv4}|$RE{net}{IPv6}/;
-my $v4 = $RE{net}{IPv4};
 
 my $connected_regex = qr{
 ^

@@ -4,11 +4,8 @@ use strict;
 use warnings;
 
 use RouteAudit::RouteObject;
-use Regexp::Common qw /net/;
+use RouteAudit::NetRE qw ( $IP_regex $v4 );
 use v5.24;
-
-my $IP_regex = qr/$RE{net}{IPv4}|$RE{net}{IPv6}/;
-my $v4 = $RE{net}{IPv4};
 
 # technically routes to interface look like this:
 # ip route 10.0.0.0/24 ip-bundle 1 1
