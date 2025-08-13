@@ -5,11 +5,12 @@ use warnings;
 use Getopt::Long;
 use RouteAudit::DeviceHandler qw ( parse_config );
 use File::Basename qw (basename);
+use JSON;
 use v5.24;
 
 
 my $opts = {};
-GetOptions(\%$opts, "path=s",);
+GetOptions(\%$opts, "path=s","json");
 $opts->{path} ||= "/tftpboot/*-confg";
 
 my @files = glob $opts->{path};
@@ -28,7 +29,11 @@ foreach my $router (@files) {
     close($f);
 }
 
-foreach my $r (@routes) {
-    next if (!$r->addr);
-    print $r->csv;
+if ($opts->{json}) {
+    print JSON->new->convert_blessed(1)->encode(\@routes);
+} else {
+    foreach my $r (@routes) {
+        next if (!$r->addr);
+        print $r->csv;
+    }
 }
